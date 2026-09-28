@@ -1,0 +1,230 @@
+/* =================================================
+   EXISTING WEBSITE CSS
+================================================= */
+
+/* shared reset (the same reset was at the top of all three clips) */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{background:#fbe9df}   /* same cream as Clip 1, so nothing flashes before it starts */
+#existing-site{position:absolute;inset:0}
+
+/* =================================================
+   CLIP 1 CSS  (heart & bow)  - every rule is scoped to #clip1
+================================================= */
+
+#clip1{
+  overflow:hidden;
+  background:radial-gradient(ellipse at 50% 30%,#fff7f0 0%,#fbe9df 70%,#f6ddd0 100%);
+  font-family:'Cormorant Garamond',Georgia,serif;
+  touch-action:none;
+  user-select:none;
+}
+#clip1 #c1-scene{position:fixed;inset:0;width:100%;height:100%}
+#clip1 #c1-title{font-style:italic;font-size:26px;fill:#b0405f;letter-spacing:.03em}
+#clip1 #c1-hint{font-size:14px;fill:#a58b7d;letter-spacing:.28em}
+#clip1 #c1-bow{cursor:grab}
+#clip1 #c1-glow{animation:c1-pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes c1-pulse{50%{transform:scale(1.12);opacity:.85}}
+/* crimson flood that covers the screen at the end */
+#clip1 #c1-flood{
+  position:fixed;left:0;top:0;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ff4f86,#d81b60 55%,#a0104a);
+  transform:translate(-50%,-50%) scale(0);
+  pointer-events:none;z-index:5;
+}
+#clip1 #c1-flood.go{transition:transform 1s cubic-bezier(.6,0,.2,1)}
+
+/* =================================================
+   CLIP 2 CSS  (birthday cake)  - every rule is scoped to #clip2
+================================================= */
+
+#clip2{
+  --bg:#f7b5be;
+  --text:#c2557a;
+}
+#clip2{
+  background:var(--bg);
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Pacifico',cursive;
+  cursor:pointer;
+}
+/* confetti */
+#clip2 #c2-confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#clip2 .dot{position:absolute;top:-20px;opacity:.85;animation:c2-fall linear infinite}
+@keyframes c2-fall{
+  to{transform:translate3d(var(--dx),110vh,0) rotate(var(--rot))}
+}
+/* layout (fits laptop screens) */
+#clip2 .stage{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(20px,5vh,56px);
+}
+#clip2 .cake{width:min(30vw,52vh);height:auto;overflow:visible}
+/* start states */
+#clip2 .plate{transform-box:fill-box;transform-origin:center;transform:scaleX(0)}
+#clip2 .layer{transform-box:fill-box;transform-origin:center bottom;opacity:0}
+#clip2 .frosting{transform-box:fill-box;transform-origin:center top;transform:scaleY(0);opacity:0}
+#clip2 .candle{transform-box:fill-box;transform-origin:center bottom;transform:scaleY(0)}
+#clip2 .flame{transform-box:fill-box;transform-origin:center bottom;opacity:0}
+/* animation timeline (starts when .play is added) */
+#clip2 .play .plate{animation:c2-plateIn .5s ease-out .2s forwards}
+#clip2 .play .l1{animation:c2-drop .7s cubic-bezier(.3,1.4,.5,1) .7s forwards}
+#clip2 .play .l2{animation:c2-drop .7s cubic-bezier(.3,1.4,.5,1) 1.1s forwards}
+#clip2 .play .l3{animation:c2-drop .7s cubic-bezier(.3,1.4,.5,1) 1.5s forwards}
+#clip2 .play .frosting{animation:c2-frost 1s ease-out 2.3s forwards}
+#clip2 .play .candle{animation:c2-grow .6s ease-out 3.3s forwards}
+#clip2 .play .flame{animation:c2-flameIn .4s ease-out 3.9s forwards,
+                          c2-flicker .18s ease-in-out 4.3s infinite alternate}
+@keyframes c2-plateIn{to{transform:scaleX(1)}}
+@keyframes c2-drop{
+  0%  {opacity:0;transform:translateY(-150px) scaleX(.9) scaleY(1.1)}
+  60% {opacity:1}
+  100%{opacity:1;transform:translateY(0) scaleX(1) scaleY(1)}
+}
+@keyframes c2-frost{
+  0%  {opacity:1;transform:scaleY(0)}
+  100%{opacity:1;transform:scaleY(1)}
+}
+@keyframes c2-grow{to{transform:scaleY(1)}}
+@keyframes c2-flameIn{
+  0%{opacity:0;transform:scale(0)}
+  100%{opacity:1;transform:scale(1)}
+}
+@keyframes c2-flicker{
+  from{opacity:1;transform:scale(1,1) rotate(-2deg)}
+  to  {opacity:.92;transform:scale(.92,1.1) rotate(2deg)}
+}
+/* title text */
+#clip2 .title{
+  font-size:clamp(2rem,5.2vw,5rem);
+  color:var(--text);
+  min-height:1.4em;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+#clip2 .title::after{
+  content:"";display:inline-block;width:2px;height:.8em;
+  margin-left:4px;background:var(--text);vertical-align:middle;
+  animation:c2-blink .7s steps(1) infinite;
+}
+#clip2 .title.done::after{display:none}
+@keyframes c2-blink{50%{opacity:0}}
+#clip2 .hint{
+  position:fixed;bottom:12px;right:16px;z-index:3;
+  font:12px/1 system-ui,sans-serif;color:#fff;opacity:.6;
+}
+
+/* =================================================
+   CLIP 3 CSS  (birthday story)  - every rule is scoped to #clip3
+================================================= */
+
+#clip3{--wine:#7b1e34;--rose:#b0405f;--ink:#3d3a3a;--paper:#fff8f0;--bg:#f2f0ee}
+#clip3{background:radial-gradient(circle at 20% 10%,#fbf3f1,var(--bg) 60%);color:var(--ink);font-family:'Cormorant Garamond',serif}
+#clip3 .top{position:fixed;top:14px;left:28px;right:28px;display:flex;justify-content:space-between;z-index:9}
+#clip3 .brand,
+#clip3 .eyebrow{font:600 10px 'Poppins';letter-spacing:.25em;text-transform:uppercase;color:var(--wine)}
+#clip3 .brand{opacity:.5;color:#666}
+#clip3 .dots{display:flex;gap:6px}
+#clip3 .dots i{width:6px;height:6px;border-radius:9px;background:#d9b8a0;transition:.4s}
+#clip3 .dots i.on{width:22px;background:var(--wine)}
+#clip3 .back{position:fixed;top:44px;left:28px;z-index:9;background:none;border:0;font:500 18px Caveat;color:#777;cursor:pointer;display:none}
+#clip3 .screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:9vw;padding:70px 8vw 40px;
+  opacity:0;visibility:hidden;transform:translateY(24px);transition:opacity .7s,transform .7s,visibility .7s}
+#clip3 .screen.on{opacity:1;visibility:visible;transform:none}
+#clip3 .col{max-width:440px}
+#clip3 .col.mid{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+#clip3 h1{font-weight:500;font-size:clamp(44px,6vw,86px);line-height:1;margin:16px 0}
+#clip3 h1 em,
+#clip3 .big em{color:var(--rose);font-style:italic}
+#clip3 h2{font-weight:600;color:var(--wine);font-size:36px}
+#clip3 .big{font-weight:500;font-size:clamp(38px,4.6vw,66px);line-height:1.02;color:var(--ink)}
+#clip3 .mid .big{color:var(--wine)}
+#clip3 .sub{font-size:18px;color:#8a7f7c;margin:14px 0}
+#clip3 .hand{font:500 20px/1.55 Caveat;color:#5a4a4a;margin:6px 0}
+#clip3 .right{text-align:right}
+#clip3 .btn{margin-top:18px;padding:12px 22px;border:0;border-radius:40px;background:linear-gradient(#c0607a,#a04160);color:#fff;
+  font:600 12px Poppins;cursor:pointer;box-shadow:0 8px 20px #a0416050;transition:.25s}
+#clip3 .btn.dark{background:var(--wine)}
+#clip3 .btn:hover{transform:translateY(-2px)}
+#clip3 .link{margin-left:14px;background:none;border:0;font:500 18px Caveat;cursor:pointer;color:#555}
+#clip3 .card{background:var(--paper);box-shadow:0 22px 50px #0000001c;position:relative;padding:34px}
+#clip3 .date{width:340px;text-align:center;background:#fff;padding:26px 28px}
+#clip3 .date small{font:600 8px Poppins;letter-spacing:.3em;color:#999}
+#clip3 .date b{display:block;font:600 76px 'Cormorant Garamond';color:var(--wine);margin:14px 0 4px}
+#clip3 .date sup{font-size:22px}
+#clip3 .date p{font-size:15px;color:#777}
+#clip3 .tape{position:absolute;top:-8px;left:12px;width:70px;height:18px;background:#f3c3cb99;transform:rotate(-4deg)}
+#clip3 .stamp{position:absolute;right:-16px;bottom:-16px;width:56px;height:56px;border:1.5px solid var(--rose);border-radius:50%;
+  font:600 7px/1.2 Poppins;color:var(--rose);display:grid;place-items:center;transform:rotate(-12deg);background:#fff;text-align:center;font-style:normal}
+#clip3 .hero .card{animation:c3-float 5s ease-in-out infinite}
+@keyframes c3-float{50%{transform:translateY(-10px) rotate(.6deg)}}
+#clip3 .note{width:420px}
+#clip3 .note h2{margin:8px 0 14px}
+#clip3 #c3-cake{cursor:pointer;transition:.3s}
+#clip3 #c3-cake:hover{transform:scale(1.03)}
+#clip3 .flame{transform-origin:center bottom;animation:c3-fl .25s ease-in-out infinite alternate}
+@keyframes c3-fl{to{transform:scale(.85,1.1)}}
+#clip3 .msg{height:26px;color:var(--rose)}
+#clip3 .name{font:500 30px Caveat;color:var(--rose);margin:10px 0;letter-spacing:.06em}
+#clip3 .grid{display:grid;grid-template-columns:repeat(3,150px);gap:20px;padding:22px;background:#fbeee2}
+#clip3 .pol{background:#fff;padding:8px 8px 22px;box-shadow:0 6px 16px #0000001a;transform:rotate(var(--r));opacity:0;
+  transition:.6s var(--d),transform .6s var(--d)}
+#clip3 .wall.on .pol{opacity:1}
+#clip3 .pol:hover{transform:scale(1.06) rotate(0)}
+#clip3 .pol div{aspect-ratio:1;background:linear-gradient(#f4d8d4,#f7e4d2);display:grid;place-items:center;color:var(--rose)}
+#clip3 .pol span{display:block;text-align:center;font:500 13px Caveat;color:#888;margin-top:6px}
+#clip3 .env{width:280px;height:180px;position:relative;cursor:pointer;transition:transform .6s;perspective:600px}
+#clip3 .env .body{position:absolute;inset:0;background:linear-gradient(135deg,#f3d5c7,#e8b8a8);clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%)}
+#clip3 .env .flap{position:absolute;top:0;left:0;right:0;height:100px;background:linear-gradient(#d9788e,#a83a55);
+  clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s;z-index:2}
+#clip3 .seal{position:absolute;left:50%;top:86px;translate:-50% 0;z-index:3;width:24px;height:24px;border-radius:50%;background:#8e2a45;color:#fff;display:grid;place-items:center;font-size:10px;transition:.4s}
+#clip3 .env.open .flap{transform:rotateX(180deg);z-index:0}
+#clip3 .env.open .seal{opacity:0}
+#clip3 .letter.show .col{transform:translateX(-30px);opacity:.4;transition:.8s}
+#clip3 .paper{width:430px;position:absolute;right:10vw;top:56px;opacity:0;visibility:hidden;transform:translateY(60px);transition:.9s}
+#clip3 .letter.show .paper{opacity:1;visibility:visible;transform:none}
+#clip3 .paper h2{font-size:38px;margin:6px 0}
+#clip3 .for{margin:0 0 8px!important}
+#clip3 .for b{color:var(--wine)}
+#clip3 .fin{flex-direction:column;gap:6px;text-align:center}
+#clip3 .fin .big{color:var(--wine);font-weight:600;font-size:44px}
+#clip3 .fl{transform-box:fill-box;transform-origin:center;animation:c3-sway 3s ease-in-out infinite}
+#clip3 .d1{animation-delay:-1s}
+#clip3 .d2{animation-delay:-2s}
+@keyframes c3-sway{50%{transform:rotate(8deg)}}
+#clip3 .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 22px;max-width:640px}
+#clip3 .tags span{font:500 18px Caveat;color:var(--rose);opacity:0;transform:translateY(8px);animation:c3-up .6s forwards}
+@keyframes c3-up{to{opacity:1;transform:none}}
+#clip3 #c3-fx i{position:fixed;top:-12px;width:8px;height:8px;pointer-events:none;z-index:20;animation:c3-fall 2.6s ease-in forwards}
+@keyframes c3-fall{to{transform:translate(var(--x),105vh) rotate(720deg);opacity:.6}}
+@media(max-width:900px){
+  #clip3 .screen{flex-direction:column;gap:20px;overflow:auto;padding-top:80px}
+  #clip3 .paper{position:static}
+}
+
+/* =================================================
+   FINAL TRANSITION CSS  (stacking + cross-fade between clips)
+================================================= */
+
+.clip{
+  position:fixed;inset:0;overflow:hidden;
+  opacity:0;visibility:hidden;
+  /* fade out, then hide */
+  transition:opacity var(--fade-time,800ms) ease, visibility 0s linear var(--fade-time,800ms);
+}
+.clip.visible{
+  opacity:1;visibility:visible;
+  transition:opacity var(--fade-time,800ms) ease, visibility 0s;
+}
+.clip.no-fade{transition:none}   /* first clip appears instantly */
+#clip1{z-index:1}
+#clip2{z-index:2}   /* each new clip fades in ON TOP of the previous one, */
+#clip3{z-index:3}   /* so the screen is never blank between clips        */
+
+/* laptop fit: on short screens (browser windows under ~720px tall) make the
+   Clip 3 photo wall a little smaller so it never touches the top/bottom edge */
+@media (max-height:720px){
+  #clip3 .grid{grid-template-columns:repeat(3,124px);gap:14px;padding:16px}
+}

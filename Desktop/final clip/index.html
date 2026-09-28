@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Little Birthday Surprise</title>
+
+<!-- Fonts used by the clips (needs internet):
+     Cormorant Garamond + Caveat + Poppins (Clips 1 and 3), Pacifico (Clip 2) -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Caveat:wght@500&family=Poppins:wght@500;600&family=Pacifico&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="final.css">
+
+<!-- Makes real photos fill the polaroid frames on the memory wall -->
+<style>
+  #clip3 .pol div{overflow:hidden}
+  #clip3 .pol div img{width:100%;height:100%;object-fit:cover;display:block}
+</style>
+</head>
+<body>
+
+  <!-- =========================
+       EXISTING WEBSITE
+       No existing website code was attached, so this slot is empty.
+       Paste your existing page here; Clip 1 then starts after
+       CONFIG.clip1Start (see script.js).
+  ========================= -->
+  <main id="existing-site"></main>
+
+  <!-- =========================
+       CLIP 1 : HEART & BOW
+  ========================= -->
+  <div class="clip" id="clip1">
+  <svg id="c1-scene" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <radialGradient id="c1-glowGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#ff5c8a" stop-opacity=".55"/>
+          <stop offset="55%" stop-color="#ff8fab" stop-opacity=".22"/>
+          <stop offset="100%" stop-color="#ffb3c6" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="c1-heartFill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#ff8fb1"/>
+          <stop offset="60%" stop-color="#ff3d7f"/>
+          <stop offset="100%" stop-color="#e91e63"/>
+        </linearGradient>
+        <radialGradient id="c1-ballFill" cx="35%" cy="30%" r="80%">
+          <stop offset="0%" stop-color="#ff5c8a"/>
+          <stop offset="100%" stop-color="#c2185b"/>
+        </radialGradient>
+      </defs>
+
+      <text id="c1-title" x="500" y="78" text-anchor="middle">a little something, for you</text>
+      <text id="c1-hint"  x="500" y="520" text-anchor="middle">PULL &amp; RELEASE</text>
+
+      <!-- glow + heart -->
+      <circle id="c1-glow" cx="500" cy="200" r="150" fill="url(#c1-glowGrad)"/>
+      <g id="c1-heart">
+        <path d="M0 42 C-64 -6 -54 -48 -24 -48 C-9 -48 0 -37 0 -29 C0 -37 9 -48 24 -48 C54 -48 64 -6 0 42Z" fill="url(#c1-heartFill)"/>
+        <ellipse cx="-22" cy="-24" rx="17" ry="9" fill="#fff" opacity=".85" transform="rotate(-20 -22 -24)"/>
+      </g>
+      <circle id="c1-ball" cx="500" cy="200" r="0" fill="url(#c1-ballFill)"/>
+      <g id="c1-sparks"></g>
+
+      <!-- bow -->
+      <g id="c1-bow">
+        <path id="c1-limb" d="M0 -52 Q34 0 0 52" fill="none" stroke="#6b4a2f" stroke-width="5" stroke-linecap="round"/>
+        <polyline id="c1-string" points="0,-52 0,0 0,52" fill="none" stroke="#8a6a4a" stroke-width="1.6"/>
+        <g id="c1-nock">
+          <line x1="0" y1="0" x2="72" y2="0" stroke="#7a5a3a" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M72 0 l-8 -4 v8z" fill="#c9a26a"/>
+          <path d="M0 0 l14 -6 M0 0 l14 6 M6 0 l14 -6 M6 0 l14 6" stroke="#e8437a" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <circle id="c1-finger" r="7" fill="#111" opacity="0"/>
+      </g>
+    </svg>
+
+    <div id="c1-flood"></div>
+  </div>
+
+  <!-- =========================
+       CLIP 2 : BIRTHDAY CAKE
+  ========================= -->
+  <div class="clip" id="clip2">
+  <div id="c2-confetti"></div>
+
+    <div class="stage" id="c2-stage">
+      <svg class="cake" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" aria-label="Birthday cake">
+        <!-- plate -->
+        <rect class="plate" x="15" y="228" width="270" height="4" rx="2" fill="#fff8ee"/>
+
+        <!-- cake layers -->
+        <g class="layer l1"><rect x="40" y="204" width="220" height="24" rx="8" fill="#a6857a"/></g>
+        <g class="layer l2">
+          <rect x="40" y="182" width="220" height="24" rx="8" fill="#a6857a"/>
+          <rect x="40" y="203" width="220" height="3" fill="#8b6a61"/>
+        </g>
+        <g class="layer l3">
+          <rect x="40" y="160" width="220" height="24" rx="8" fill="#a6857a"/>
+          <rect x="40" y="181" width="220" height="3" fill="#8b6a61"/>
+        </g>
+
+        <!-- frosting -->
+        <path class="frosting" fill="#fff8ee" d="
+          M38 152 Q38 145 46 145 H254 Q262 145 262 152 V174 Q262 180 256 180
+          Q250 180 250 172 Q248 164 238 166 Q228 168 226 178 Q224 190 216 190
+          Q208 190 208 176 Q206 166 192 166 Q178 166 176 170 H120
+          Q112 170 110 178 Q108 198 100 198 Q92 198 92 180 Q90 168 76 168
+          Q64 168 62 176 Q60 184 54 184 Q48 184 46 174 Q38 170 38 160 Z"/>
+
+        <!-- candle -->
+        <g class="candle">
+          <rect x="146" y="98" width="8" height="50" rx="2" fill="#fff8ee"/>
+          <rect x="146" y="116" width="8" height="3" fill="#e9dcc8"/>
+          <rect x="146" y="132" width="8" height="3" fill="#e9dcc8"/>
+        </g>
+
+        <!-- flame -->
+        <g class="flame">
+          <path d="M150 74 Q158 86 156 93 Q154 99 150 99 Q146 99 144 93 Q142 86 150 74 Z" fill="#f5a623"/>
+          <path d="M150 82 Q154 89 153 94 Q152 97 150 97 Q148 97 147 94 Q146 89 150 82 Z" fill="#ffe27a"/>
+        </g>
+      </svg>
+
+      <h1 class="title" id="c2-title"></h1>
+    </div>
+
+    <div class="hint">click anywhere to replay</div>
+  </div>
+
+  <!-- =========================
+       CLIP 3 : BIRTHDAY STORY  (also the FINAL WEBSITE SECTION)
+  ========================= -->
+  <div class="clip" id="clip3">
+  <div class="top"><span class="brand">a little birthday story</span><div class="dots" id="c3-dots"></div></div>
+  <button class="back" id="c3-back">← back</button>
+
+  <!-- 1 HERO -->
+  <section class="screen hero on" data-i="0">
+    <div class="col">
+      <p class="eyebrow">A LITTLE BIRTHDAY STORY</p>
+      <h1>Today is<br><em>all about you.</em></h1>
+      <p class="sub">A small collection of memories, words, photographs and one little surprise — made especially for their birthday.</p>
+      <p class="hand">keep this little day forever ♡</p>
+      <button class="btn" data-go="1">begin the story →</button>
+    </div>
+    <div class="card date">
+      <span class="tape"></span><small>BIRTHDAY DATE</small>
+     <b id="c3-age">30th</b>
+      <p>Every moment spent with you feels like a beautiful dream come true.</p>
+      <i class="stamp">MADE<br>WITH<br>LOVE</i>
+    </div>
+  </section>
+
+  <!-- 2 NOTE + WISH -->
+  <section class="screen wish" data-i="1">
+    <div class="card note">
+      <p class="eyebrow">A BIRTHDAY NOTE</p>
+      <h2>Happy Birthday</h2>
+      <p class="hand"> Happy Birthday to my bestie! ❤️🎂 I’m really lucky to have a friend like you in my life. Thank you for always being there, for all the fun conversations, crazy moments, and beautiful memories we’ve shared. You are not just my best friend, but someone who makes my days a little better just by being there. I hope your birthday is filled with happiness, laughter, and everything you wish for. Stay the same amazing person you are, keep smiling, and enjoy your special day. Happy Birthday once again, bestie! 🥳❤️</p>
+      <p class="hand">You are not just my best friend, but someone who makes my days a little better just by being there. I hope your birthday is filled with happiness, laughter, and everything you wish for. Stay the same amazing person you are, keep smiling, and enjoy your special day. Happy Birthday once again, bestie! 🥳❤️</p>
+      <p class="hand right">with love,</p>
+    </div>
+    <div class="col mid">
+      <h2 class="big"><em>make a wish</em></h2>
+       <p class="hand">it is their <span id="c3-age2">30<sup>th</sup></span> day ✷</p>
+      <svg id="c3-cake" viewBox="0 0 220 190" width="260">
+        <ellipse cx="110" cy="176" rx="100" ry="8" fill="#f1dcc0"/>
+        <rect x="20" y="86" width="180" height="88" rx="14" fill="#d98b62"/>
+        <path d="M16 92q0-18 20-18h148q20 0 20 18 0 10-10 10H26q-10 0-10-10z" fill="#f3c3cb"/>
+        <g fill="#f3c3cb"><rect x="38" y="96" width="9" height="18" rx="4.5"/><rect x="100" y="96" width="9" height="24" rx="4.5"/><rect x="160" y="96" width="9" height="16" rx="4.5"/></g>
+        <g id="c3-candles"></g>
+      </svg>
+      <p class="hand msg" id="c3-msg">tap the cake to light the candles</p>
+      <button class="btn dark" data-go="2">save the memories →</button>
+    </div>
+  </section>
+
+  <!-- 3 MEMORY WALL  (the photos are filled in by the PHOTO SECTION script at the bottom of this file) -->
+  <section class="screen wall" data-i="2">
+    <div class="col">
+      <p class="eyebrow">MEMORY WALL</p>
+      <h2 class="big">the moments<br><em>worth keeping.</em></h2>
+      <p class="sub">A few favourite photographs, turned into a little wall of memories.</p>
+      <p class="hand">Happy Birthday,</p>
+      <p class="name" id="c3-name">  Tanya Srivastava  </p>
+      <p class="name" id="c3-name">  My tannu  </p>
+      <button class="btn" data-go="3">wrap it all up →</button>
+    </div>
+    <div class="grid" id="c3-grid"></div>
+  </section>
+
+  <!-- 4 ENVELOPE + LETTER -->
+  <section class="screen letter" data-i="3">
+    <div class="col mid">
+      <div class="env" id="c3-env"><div class="flap"></div><div class="body"></div><span class="seal">✦</span></div>
+      <p class="hand">a little letter, just for you ♡</p>
+    </div>
+    <div class="card paper" id="c3-paper">
+      <p class="eyebrow">ONE MORE THING</p>
+      <h2>A Birthday Letter</h2>
+      <p class="hand for">for <b id="c3-name2"></b> My tannu </p>
+      <p class="hand">Happy Birthday. ❤️ Almost a year has passed since we last talked, but I still remember the time when you were my best friend.
+
+                      We shared so many memories, conversations, laughs, and little moments. I never thought one fight would create so much distance between us.</p>
+
+                     <p class="hand">I wanted to reach out many times, but I didn't know if you still wanted me in your life. So I stayed quiet.
+
+                    Today, I don't want to talk about the past or blame anyone. It's your birthday, and I simply wanted to wish you. </p>
+
+                    <p class="hand">I hope you're happy. I hope you're doing well. And I hope life gives you everything you've ever wished for.
+
+                      Maybe things between us will never be the same again. Maybe this is the last message you'll receive from me.
+
+                      But if it is, I want you to remember one thing: </p>
+
+                     <p class="hand">I was always grateful for the friendship we once had.
+
+                     Happy Birthday. ❤️🎂
+
+                     Take care of yourself.</p>
+    
+      <p class="hand">Happy Birthday ♡</p>
+      <p class="hand right">always cheering for you,</p>
+      <button class="btn dark" data-go="4">+ one last surprise</button>
+      <button class="link" data-go="0">start again ↺</button>
+    </div>
+  </section>
+
+  <!-- 5 FLOWERS -->
+  <section class="screen fin" data-i="4">
+    <p class="eyebrow">JUST FOR YOU</p>
+    <h2 class="big">you are the best part of my life .</h2>
+    <p class="hand">flowers, wishes &amp; a whole lot of love ♡</p>
+    <svg viewBox="0 0 240 200" width="300" id="c3-bouquet">
+      <g stroke="#3f6b4f" stroke-width="4" stroke-linecap="round"><path d="M100 110 76 40M120 110 128 26M122 110 172 60"/></g>
+      <path d="M70 100q-22-10-24-26 22 4 24 26zM152 118q22-14 40-8-14 16-40 8z" fill="#3f6b4f"/>
+      <g class="fl"><circle cx="72" cy="40" r="26" fill="#f2c94c"/><circle cx="72" cy="40" r="11" fill="#7a3b2a"/></g>
+      <g class="fl d1"><circle cx="128" cy="26" r="26" fill="#f2c94c"/><circle cx="128" cy="26" r="11" fill="#7a3b2a"/></g>
+      <g class="fl d2"><circle cx="172" cy="60" r="26" fill="#f2c94c"/><circle cx="172" cy="60" r="11" fill="#7a3b2a"/></g>
+      <path d="M76 108h88l10 84H66z" fill="#c4553f"/><rect x="114" y="108" width="10" height="84" fill="#f1dcc0"/>
+    </svg>
+    <div class="tags" id="c3-tags"></div>
+  </section>
+
+  <div id="c3-fx"></div>
+  </div>
+
+  <script src="final.js"></script>
+
+  <!-- =====================================================================
+       PHOTO SECTION  -  EASY COPY / PASTE AREA FOR YOUR MEMORY WALL PHOTOS
+
+       HOW TO ADD YOUR PHOTOS
+       1. Make a folder called  images  next to this index.html file.
+       2. Copy your photos into it (photo1.jpg, photo2.jpg, ...).
+       3. Below, change each  src  to your photo's file name, and change
+          the  label  to the little caption you want under the photo.
+
+       You can also paste a full web link as the src, for example:
+         src: "https://example.com/my-photo.jpg"
+
+       * The wall is designed for 9 photos (3 x 3).
+       * To add another photo, copy one full line { src: "...", label: "..." },
+         and paste it before the closing bracket ]
+       * Leave  src: ""  to show the little heart frame instead of a photo.
+       ===================================================================== -->
+  <script>
+    const PHOTOS = [
+      { src: "images/photo1.jpg", label: "first memory" },
+      { src: "images/photo2.jpg", label: "that day" },
+      { src: "images/photo3.jpg", label: "favourite" },
+      { src: "images/photo4.jpg", label: "together" },
+      { src: "images/photo5.jpg", label: "good days" },
+      { src: "images/photo6.jpg", label: "always" },
+      { src: "images/photo7.jpg", label: "laughter" },
+      { src: "images/photo8.jpg", label: "forever" },
+      { src: "images/photo9.jpg", label: "us" }
+    ];
+
+    /* ---- builds the photo wall (no need to edit below this line) ---- */
+    (function () {
+      const grid = document.getElementById("c3-grid");
+      grid.innerHTML = PHOTOS.map((p, i) =>
+        `<div class="pol" style="--r:${(Math.random() * 6 - 3).toFixed(1)}deg;--d:${i * .09}s">
+           <div>${p.src ? `<img src="${p.src}" alt="${p.label}" onerror="this.replaceWith('♡')">` : "♡"}</div>
+           <span>${p.label}</span>
+         </div>`).join("");
+    })();
+  </script>
+</body>
+</html>
