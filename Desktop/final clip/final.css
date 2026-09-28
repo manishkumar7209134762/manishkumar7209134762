@@ -168,7 +168,7 @@ body{background:#fbe9df}   /* same cream as Clip 1, so nothing flashes before it
 @keyframes c3-fl{to{transform:scale(.85,1.1)}}
 #clip3 .msg{height:26px;color:var(--rose)}
 #clip3 .name{font:500 30px Caveat;color:var(--rose);margin:10px 0;letter-spacing:.06em}
-#clip3 .grid{display:grid;grid-template-columns:repeat(3,150px);gap:20px;padding:22px;background:#fbeee2}
+#clip3 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:20px;padding:22px;background:#fbeee2;max-width:100%}
 #clip3 .pol{background:#fff;padding:8px 8px 22px;box-shadow:0 6px 16px #0000001a;transform:rotate(var(--r));opacity:0;
   transition:.6s var(--d),transform .6s var(--d)}
 #clip3 .wall.on .pol{opacity:1}
@@ -200,7 +200,13 @@ body{background:#fbe9df}   /* same cream as Clip 1, so nothing flashes before it
 #clip3 #c3-fx i{position:fixed;top:-12px;width:8px;height:8px;pointer-events:none;z-index:20;animation:c3-fall 2.6s ease-in forwards}
 @keyframes c3-fall{to{transform:translate(var(--x),105vh) rotate(720deg);opacity:.6}}
 @media(max-width:900px){
-  #clip3 .screen{flex-direction:column;gap:20px;overflow:auto;padding-top:80px}
+  #clip3 .screen{flex-direction:column;justify-content:flex-start;gap:20px;overflow-x:hidden;overflow-y:auto;padding:80px 16px 24px;-webkit-overflow-scrolling:touch}
+  #clip3 .screen>*{flex:0 0 auto;max-width:100%}
+  #clip3 .col{width:min(100%,440px)}
+  #clip3 .note,#clip3 .paper{width:min(100%,420px);padding:clamp(18px,5vw,30px)}
+  #clip3 .date{width:min(340px,100%)}
+  #clip3 .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px;width:min(100%,420px)}
+  #clip3 .pol{min-width:0;padding:6px 6px 18px}
   #clip3 .paper{position:static}
 }
 
@@ -226,5 +232,9 @@ body{background:#fbe9df}   /* same cream as Clip 1, so nothing flashes before it
 /* laptop fit: on short screens (browser windows under ~720px tall) make the
    Clip 3 photo wall a little smaller so it never touches the top/bottom edge */
 @media (max-height:720px){
-  #clip3 .grid{grid-template-columns:repeat(3,124px);gap:14px;padding:16px}
+  #clip3 .grid{grid-template-columns:repeat(3,minmax(0,124px));gap:14px;padding:16px}
+}
+
+@media(max-width:600px){
+  #clip3 .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:10px;width:min(100%,420px)}
 }
